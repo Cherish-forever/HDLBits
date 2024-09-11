@@ -11,5 +11,5 @@ class SimpleWire(Module):
 
 
 if __name__ == "__main__":
-    top = SimpleWire();
+    top = SimpleWire()
     print(verilog.convert(top, ios={top.out, top.in_}))
