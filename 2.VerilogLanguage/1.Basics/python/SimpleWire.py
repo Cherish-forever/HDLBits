@@ -1,15 +1,19 @@
 #!/usr/bin/python3
 
-from migen import *
-from migen.fhdl import verilog
+from nmigen import *
+from nmigen.back import verilog
 
-class SimpleWire(Module):
+class SimpleWire(Elaboratable):
     def __init__(self):
         self.out = Signal()
         self.in_ = Signal()
-        self.comb += self.out.eq(self.in_)
+
+    def elaborate(self, platform):
+        m = Module()
+        m.d.comb += self.out.eq(self.in_)
+        return m
 
 
 if __name__ == "__main__":
     top = SimpleWire()
-    print(verilog.convert(top, ios={top.out, top.in_}))
+    print(verilog.convert(top, ports=[top.out, top.in_]))

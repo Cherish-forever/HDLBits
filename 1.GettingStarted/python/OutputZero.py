@@ -1,14 +1,18 @@
 #!/usr/bin/python3
 
-from migen import *
-from migen.fhdl import verilog
+from nmigen import *
+from nmigen.back import verilog
 
-class OutputZero(Module):
+class OutputZero(Elaboratable):
     def __init__(self):
         self.zero = Signal()
-        self.comb += self.zero.eq(0)
+
+    def elaborate(self, platform):
+        m = Module()
+        m.d.comb += self.zero.eq(0)
+        return m
 
 
 if __name__ == "__main__":
     top = OutputZero()
-    print(verilog.convert(top, ios={top.zero}))
+    print(verilog.convert(top, ports=[top.zero]))

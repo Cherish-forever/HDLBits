@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
-from migen import *
-from migen.fhdl import verilog
+from nmigen import *
+from nmigen.back import verilog
 
-class FourWires(Module):
+class FourWires(Elaboratable):
     def __init__(self):
         self.a = Signal()
         self.b = Signal()
@@ -13,12 +13,15 @@ class FourWires(Module):
         self.y = Signal()
         self.z = Signal()
 
-        self.comb += self.w.eq(self.a)
-        self.comb += self.x.eq(self.b)
-        self.comb += self.y.eq(self.b)
-        self.comb += self.z.eq(self.c)
+    def elaborate(self, platform):
+        m = Module()
+        m.d.comb += self.w.eq(self.a)
+        m.d.comb += self.x.eq(self.b)
+        m.d.comb += self.y.eq(self.b)
+        m.d.comb += self.z.eq(self.c)
+        return m
 
 if __name__ == "__main__":
     top = FourWires()
-    print(verilog.convert(top, ios={top.a, top.b, top.c,
-                                    top.w, top.x, top.y, top.z}))
+    print(verilog.convert(top, ports=[top.a, top.b, top.c,
+                                      top.w, top.x, top.y, top.z]))

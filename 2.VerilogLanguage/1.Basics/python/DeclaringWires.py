@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
-from migen import *
-from migen.fhdl import verilog
+from nmigen import *
+from nmigen.back import verilog
 
-class DeclaringWires(Module):
+class DeclaringWires(Elaboratable):
     def __init__(self):
         self.a = Signal()
         self.b = Signal()
@@ -12,10 +12,13 @@ class DeclaringWires(Module):
         self.out = Signal()
         self.out_n = Signal()
 
-        self.comb += self.out.eq((self.a & self.b) | (self.c & self.d))
-        self.comb += self.out_n.eq(~self.out)
+    def elaborate(self, platform):
+        m = Module()
+        m.d.comb += self.out.eq((self.a & self.b) | (self.c & self.d))
+        m.d.comb += self.out_n.eq(~self.out)
+        return m
 
 if __name__ == "__main__":
     top = DeclaringWires()
-    print(verilog.convert(top, ios={top.a, top.b, top.c,
-                                    top.out, top.out_n}))
+    print(verilog.convert(top, ports=[top.a, top.b, top.c,
+                                      top.out, top.out_n]))
