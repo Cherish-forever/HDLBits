@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class GettingStared(Elaboratable):
     def __init__(self):
@@ -14,4 +14,4 @@ class GettingStared(Elaboratable):
 
 if __name__ == "__main__":
     top = GettingStared()
-    print(verilog.convert(top, ports=[top.one]))
+    main(top, ports=[top.one])

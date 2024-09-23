@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class OutputZero(Elaboratable):
     def __init__(self):
@@ -15,4 +15,4 @@ class OutputZero(Elaboratable):
 
 if __name__ == "__main__":
     top = OutputZero()
-    print(verilog.convert(top, ports=[top.zero]))
+    main(top, ports=[top.zero])
