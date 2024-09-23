@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class XNORGate(Elaboratable):
     def __init__(self):
@@ -16,4 +16,4 @@ class XNORGate(Elaboratable):
 
 if __name__ == "__main__":
     top = XNORGate()
-    print(verilog.convert(top, ports=[top.out, top.a, top.b]))
+    main(top, ports=[top.out, top.a, top.b])

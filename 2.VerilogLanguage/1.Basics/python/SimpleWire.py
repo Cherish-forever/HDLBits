@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class SimpleWire(Elaboratable):
     def __init__(self):
@@ -16,4 +16,4 @@ class SimpleWire(Elaboratable):
 
 if __name__ == "__main__":
     top = SimpleWire()
-    print(verilog.convert(top, ports=[top.out, top.in_]))
+    main(top, ports=[top.out, top.in_])

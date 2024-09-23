@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class BitwiseOperators(Elaboratable):
     def __init__(self):
@@ -31,6 +31,6 @@ class BitwiseOperators(Elaboratable):
 
 if __name__ == "__main__":
     top = BitwiseOperators()
-    print(verilog.convert(top, ports=[top.a,top.b,
-                                      top.out_or_bitwise,
-                                      top.out_or_logical, top.out_not]))
+    main(top, ports=[top.a,top.b,
+                     top.out_or_bitwise,
+                     top.out_or_logical, top.out_not])

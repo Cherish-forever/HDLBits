@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class FourInputGates(Elaboratable):
     def __init__(self):
@@ -21,5 +21,5 @@ class FourInputGates(Elaboratable):
 
 if __name__ == "__main__":
     top = FourInputGates()
-    print(verilog.convert(top, ports=[top.in_,top.out_and,
-                                      top.out_or, top.out_xor]))
+    main(top, ports=[top.in_,top.out_and,
+                     top.out_or, top.out_xor])

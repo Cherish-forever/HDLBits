@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class Inverter(Elaboratable):
     def __init__(self):
@@ -15,4 +15,4 @@ class Inverter(Elaboratable):
 
 if __name__ == "__main__":
     top = Inverter()
-    print(verilog.convert(top, ports=[top.out, top.in_]))
+    main(top, ports=[top.out, top.in_])

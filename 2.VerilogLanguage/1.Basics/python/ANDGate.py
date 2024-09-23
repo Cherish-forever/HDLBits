@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class ANDGate(Elaboratable):
     def __init__(self):
@@ -16,4 +16,4 @@ class ANDGate(Elaboratable):
 
 if __name__ == "__main__":
     top = ANDGate()
-    print(verilog.convert(top, ports=[top.a, top.b, top.out]))
+    main(top, ports=[top.a, top.b, top.out])

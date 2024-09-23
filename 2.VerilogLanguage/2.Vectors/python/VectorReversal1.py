@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 def cat_reversal_bits(sig, width):
     # Cat: The first argument occupies the lower bits of the result.
@@ -19,4 +19,4 @@ class VectorReversal1(Elaboratable):
 
 if __name__ == "__main__":
     top = VectorReversal1()
-    print(verilog.convert(top, ports=[top.in_, top.out]))
+    main(top, ports=[top.in_, top.out])

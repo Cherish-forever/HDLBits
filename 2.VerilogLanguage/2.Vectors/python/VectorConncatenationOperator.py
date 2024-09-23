@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class VectorConncatenationOperator(Elaboratable):
     def __init__(self):
@@ -27,6 +27,6 @@ class VectorConncatenationOperator(Elaboratable):
 
 if __name__ == "__main__":
     top = VectorConncatenationOperator()
-    print(verilog.convert(top, ports=[top.a, top.b, top.c,
-                                      top.d, top.e, top.f,
-                                      top.w, top.x, top.y, top.z]))
+    main(top, ports=[top.a, top.b, top.c,
+                     top.d, top.e, top.f,
+                     top.w, top.x, top.y, top.z])

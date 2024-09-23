@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class MoreReplication(Elaboratable):
     def __init__(self):
@@ -25,5 +25,5 @@ class MoreReplication(Elaboratable):
 
 if __name__ == "__main__":
     top = MoreReplication()
-    print(verilog.convert(top, ports=[top.a, top.b, top.c,
-                                      top.d, top.e, top.out]))
+    main(top, ports=[top.a, top.b, top.c,
+                     top.d, top.e, top.out])

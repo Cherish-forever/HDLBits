@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class Chip7458(Elaboratable):
     def __init__(self):
@@ -27,7 +27,7 @@ class Chip7458(Elaboratable):
 
 if __name__ == "__main__":
     top = Chip7458()
-    print(verilog.convert(top, ports=[top.p1a, top.p1b, top.p1c, top.p1d, top.p1e, top.p1f,
-                                    top.p1y,
-                                    top.p2a, top.p2b, top.p2c, top.p2d,
-                                      top.p2y]))
+    main(top, ports=[top.p1a, top.p1b, top.p1c,
+                     top.p1d, top.p1e, top.p1f,
+                     top.p1y, top.p2a, top.p2b,
+                     top.p2c, top.p2d, top.p2y])

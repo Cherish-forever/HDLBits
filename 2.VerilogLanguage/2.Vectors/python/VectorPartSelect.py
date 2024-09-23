@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class VectorPartSelect(Elaboratable):
     def __init__(self):
@@ -22,4 +22,4 @@ class VectorPartSelect(Elaboratable):
 
 if __name__ == "__main__":
     top = VectorPartSelect()
-    print(verilog.convert(top, ports=[top.in_, top.out]))
+    main(top, ports=[top.in_, top.out])

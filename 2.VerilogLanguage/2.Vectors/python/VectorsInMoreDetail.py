@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class VectorsInMoreDetail(Elaboratable):
     def __init__(self):
@@ -20,4 +20,4 @@ class VectorsInMoreDetail(Elaboratable):
 
 if __name__ == "__main__":
     top = VectorsInMoreDetail()
-    print(verilog.convert(top, ports=[top.in_, top.out_hi, top.out_lo]))
+    main(top, ports=[top.in_, top.out_hi, top.out_lo])

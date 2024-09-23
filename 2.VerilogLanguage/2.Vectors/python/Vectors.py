@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from nmigen import *
-from nmigen.back import verilog
+from nmigen.cli import main
 
 class Vectors(Elaboratable):
     def __init__(self):
@@ -21,5 +21,5 @@ class Vectors(Elaboratable):
 
 if __name__ == "__main__":
     top = Vectors()
-    print(verilog.convert(top, ports=[top.vec, top.outv,
-                                      top.o2, top.o1, top.o0]))
+    main(top, ports=[top.vec, top.outv,
+                     top.o2, top.o1, top.o0])
