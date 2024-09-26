@@ -17,7 +17,7 @@ class TwoGate(Elaboratable):
 
 if __name__ == "__main__":
     top = TwoGate()
-    main(top, ports=[top.in1, top.in2, top.out])
+    main(top, ports=[top.in1, top.in2, top.in3, top.out])
 
     from nmigen.back.pysim import Simulator, Delay, Settle
 

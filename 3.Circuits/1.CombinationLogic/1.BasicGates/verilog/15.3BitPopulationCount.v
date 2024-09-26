@@ -7,7 +7,7 @@ module top_module(
    always @ (*) begin
       count = 0;
       for (i=0; i<$bits(in);i++) begin
-	 count = count + in[i];
+         count = count + in[i];
       end
       out = count;
    end
